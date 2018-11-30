@@ -13,9 +13,11 @@ app.set("view engine", "handlebars");
 
 // Load Routes
 const index = require("./routes/index");
+const deals = require("./routes/deals");
 
 // Routes
 app.use("/", index);
+app.use("/deals", deals);
 
 const port = process.env.PORT || 5000;
 
