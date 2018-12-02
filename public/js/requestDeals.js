@@ -46,13 +46,13 @@ function displayResult(data, product) {
     <div class="col s12 m12 l12 xl12">
         <div class="card horizontal">
             <div class="card-image">
-                <a href="${data[i].url}">${thumbnail}</a>
+                <a href="${data[i].url}" target="_blank">${thumbnail}</a>
             </div>
             <div class="card-stacked">
                 <div class="card-content">
-                    <h5><a href="${directToReadMore(data[i])}">${
-      data[i].title
-    }</a></h5>
+                    <h5><a href="${directToReadMore(
+                      data[i]
+                    )}" target="_blank">${data[i].title}</a></h5>
                 </div>
                 <div class="card-action">
                     <span class="badge">Score: ${data[i].score}</span>
