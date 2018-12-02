@@ -1,10 +1,21 @@
 $(function() {
-  var pathName = window.location.pathname;
   var product = window.location.pathname.split("/").pop();
-  const limit = 20;
-  var initLoad = false;
   let deals_data;
+  let spinner = `
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+            <div class="circle"></div>
+            </div><div class="gap-patch">
+            <div class="circle"></div>
+            </div><div class="circle-clipper right">
+            <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+  `;
   if (product === "ssd" || product === "hdd" || product === "monitor") {
+    $(".spinner").append(spinner);
     $.get(`result/${product}`, function(data) {
       console.log(data);
       deals_data = data;
@@ -35,7 +46,7 @@ function displayResult(data, product) {
     <div class="col s12 m12 l12 xl12">
         <div class="card horizontal">
             <div class="card-image">
-                ${thumbnail}
+                <a href="${data[i].url}">${thumbnail}</a>
             </div>
             <div class="card-stacked">
                 <div class="card-content">
@@ -57,6 +68,7 @@ function displayResult(data, product) {
   //     result += post.title;
   //     result += ", <br>";
   //   });
+  $(".spinner").remove();
   resultDiv.insertAdjacentHTML("beforeend", result);
 }
 
