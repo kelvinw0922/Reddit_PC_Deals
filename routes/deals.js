@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { search } = require("../public/js/redditapi");
 
 // Deals Page
 router.get("/ssd", (req, res) => {
@@ -34,7 +35,9 @@ router.get("/monitor", (req, res) => {
 
 // AJAX GET Request of each deals' pages
 router.get("/result/:product", (req, res) => {
-  res.send(req.params.product);
+  search(req.params.product, "new").then(results => {
+    res.send(results);
+  });
 });
 
 module.exports = router;

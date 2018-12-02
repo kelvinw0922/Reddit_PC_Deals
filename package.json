@@ -9,8 +9,10 @@
   "author": "Kelvin Wong",
   "license": "ISC",
   "dependencies": {
+    "es6-promise": "^4.2.5",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
+    "isomorphic-fetch": "^2.2.1",
     "nodemon": "^1.18.7"
   }
 }
