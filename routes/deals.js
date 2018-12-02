@@ -8,7 +8,9 @@ router.get("/ssd", (req, res) => {
     active: {
       ssd: true,
       hdd: false,
-      monitor: false
+      monitor: false,
+      mouse: false,
+      gpu: false
     }
   });
 });
@@ -18,7 +20,9 @@ router.get("/hdd", (req, res) => {
     active: {
       ssd: false,
       hdd: true,
-      monitor: false
+      monitor: false,
+      mouse: false,
+      gpu: false
     }
   });
 });
@@ -28,7 +32,33 @@ router.get("/monitor", (req, res) => {
     active: {
       ssd: false,
       hdd: false,
-      monitor: true
+      monitor: true,
+      mouse: false,
+      gpu: false
+    }
+  });
+});
+
+router.get("/mouse", (req, res) => {
+  res.render("deals/mouse", {
+    active: {
+      ssd: false,
+      hdd: false,
+      monitor: false,
+      mouse: true,
+      gpu: false
+    }
+  });
+});
+
+router.get("/gpu", (req, res) => {
+  res.render("deals/gpu", {
+    active: {
+      ssd: false,
+      hdd: false,
+      monitor: false,
+      mouse: false,
+      gpu: true
     }
   });
 });

@@ -14,4 +14,14 @@
     {{else}}
     <li><a href="/deals/monitor">Monitor</a></li>
     {{/if}}
+    {{#if active.mouse}}
+    <li class="active"><a href="/deals/mouse">Mouse</a></li>
+    {{else}}
+    <li><a href="/deals/mouse">Mouse</a></li>
+    {{/if}}
+    {{#if active.gpu}}
+    <li class="active"><a href="/deals/gpu">GPU</a></li>
+    {{else}}
+    <li><a href="/deals/gpu">GPU</a></li>
+    {{/if}}
 </ul>
