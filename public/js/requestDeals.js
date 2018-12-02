@@ -14,7 +14,13 @@ $(function() {
         </div>
     </div>
   `;
-  if (product === "ssd" || product === "hdd" || product === "monitor") {
+  if (
+    product === "ssd" ||
+    product === "hdd" ||
+    product === "monitor" ||
+    product === "mouse" ||
+    product === "gpu"
+  ) {
     $(".spinner").append(spinner);
     $.get(`result/${product}`, function(data) {
       console.log(data);
