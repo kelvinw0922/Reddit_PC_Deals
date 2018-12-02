@@ -19,6 +19,9 @@ const deals = require("./routes/deals");
 app.use("/", index);
 app.use("/deals", deals);
 
+// Set Static Folder
+app.use(express.static(path.join(__dirname, "public")));
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
