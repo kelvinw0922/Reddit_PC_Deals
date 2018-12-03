@@ -14,3 +14,20 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+.thumbnail {
+  height: 200px !important;
+  width: 200px !important;
+  padding: 1rem !important;
+  margin: auto !important;
+}
+
+.out-of-stock {
+  color: grey !important;
+}
+
+.hot-deal {
+  font-style: italic;
+  font-weight: 600;
+  color: red;
+}

@@ -24,21 +24,32 @@ function displayResult(data, product) {
   var result = "";
   var resultDiv = document.getElementById(product);
 
+  // Remove the Spinner
+  $(".spinner").remove();
+
   for (let i = 0; i < data.length; i++) {
     let thumbnail = "";
+    let out_of_stock = false;
+    let expired = false;
+    let hot_deal = false;
 
     // Check if there's any invalid thumbnail
-    if (
-      data[i].thumbnail != "default" &&
-      data[i].thumbnail != "nsfw" &&
-      data[i].thumbnail != "self" &&
-      data[i].thumbnail != "spoiler"
-    ) {
-      thumbnail = `<img src="${
-        data[i].thumbnail
-      }" style="height: 200px; padding: 1rem; width: 200px; margin: auto;">`;
+    if (data[i].thumbnail === "default" || data[i].thumbnail === "self") {
+      thumbnail = `<img src="/img/deals.png" class="thumbnail">`;
+    } else if (data[i].thumbnail === "nsfw") {
+      // Check if the product is NSFW(meaning SUPER GOOD DEAL)
+      thumbnail = `<img src="/img/hot_deal.jpg" class="thumbnail">`;
+      hot_deal = true;
+    } else if (data[i].thumbnail === "spoiler") {
+      // Check if the product is Expired
+      thumbnail = `<img src="/img/expired.jpg" class="thumbnail">`;
+      expired = true;
+    } else if (data[i].link_flair_text === "Out Of Stock") {
+      // Check if the product is Out Of Stock
+      thumbnail = `<img src="/img/out_of_stock.jpg" class="thumbnail">`;
+      out_of_stock = true;
     } else {
-      thumbnail = `<img src="/img/deals.png" style="height: 200px; width: 200px; padding: 1rem; margin: auto;">`;
+      thumbnail = `<img src="${data[i].thumbnail}" class="thumbnail">`;
     }
 
     // Write Each Post in HTML Format as a String
@@ -50,9 +61,11 @@ function displayResult(data, product) {
             </div>
             <div class="card-stacked">
                 <div class="card-content">
-                    <h5><a href="${directToReadMore(
-                      data[i]
-                    )}" target="_blank">${data[i].title}</a></h5>
+                <h5>${i}. <a href="${directToReadMore(
+      data[i]
+    )}" target="_blank" ${checkProduct(out_of_stock, expired, hot_deal)}>${
+      data[i].title
+    }</a></h5>
                 </div>
                 <div class="card-action">
                     <span class="badge">Score: ${data[i].score}</span>
@@ -64,9 +77,6 @@ function displayResult(data, product) {
     result += newPost;
   }
 
-  // Remove the Spinner
-  $(".spinner").remove();
-
   // Append each post to the result class's div
   resultDiv.insertAdjacentHTML("beforeend", result);
 }
@@ -74,4 +84,14 @@ function displayResult(data, product) {
 function directToReadMore(post) {
   let newURL = "http://www.reddit.com" + post.permalink;
   return newURL;
+}
+
+function checkProduct(out_of_stock, expired, hot_deal) {
+  if (out_of_stock || expired) {
+    return `class="out-of-stock"`;
+  } else if (hot_deal) {
+    return `class="hot-deal"`;
+  } else {
+    return "";
+  }
 }
