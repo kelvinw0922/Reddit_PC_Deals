@@ -61,7 +61,7 @@ router.get("/cpu", (req, res) => {
   res.render("deals/product", {
     cpu: true,
     product: productName,
-    title: "Computer Processing Unit (CPU)"
+    title: "Central Processing Unit (CPU)"
   });
 });
 
