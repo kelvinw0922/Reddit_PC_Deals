@@ -16,7 +16,7 @@ $(function() {
     product === "cpu"
   ) {
     $.get(`result/${product}`, function(data) {
-      // console.log(data);
+      console.log(data);
       deals_data = data;
       displayResult(deals_data, product);
     });
@@ -76,9 +76,9 @@ function displayResult(data, product) {
                   <span class="badge">Score: ${data[i].score}</span>
                   ${badgeHotDeal(hot_deal)}
                   ${badgeExpiredDeal(expired, out_of_stock)}
-                  <span class="left badge">Submission Time: ${getSubmissionTime(
+                  <span class="left badge">${getSubmissionTime(
                     data[i].created_utc
-                  )} hours ago</span>
+                  )} by ${data[i].author}</span>
                 </div>
             </div>
         </div>
@@ -122,7 +122,18 @@ function diff_hours(dt1) {
   var post_date = new Date(dt1 * 1000);
   var diff = (now_date.getTime() - post_date.getTime()) / 1000;
   diff /= 60 * 60;
-  return Math.abs(Math.round(diff));
+  var result = Math.abs(Math.floor(diff));
+  if (diff < 1) {
+    return `Submitted ${(diff * 60).toFixed(0)} minutes ago`;
+  } else if (diff < 24) {
+    return `Submitted ${result} hours ago`;
+  } else {
+    if (Math.abs(Math.floor(result / 24)) === 1) {
+      return "Submitted 1 day ago";
+    } else {
+      return `Submitted ${Math.abs(Math.floor(result / 24))} days ago`;
+    }
+  }
 }
 
 // Retrieve Each Post's Submission Time and Convert it to (x hours ago)
