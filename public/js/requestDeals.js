@@ -55,6 +55,10 @@ function displayResult(data, product) {
       thumbnail = `<img src="${data[i].thumbnail}" class="thumbnail">`;
     }
 
+    // Retrieve Each Post's Submission Time and Convert it to (x hours ago)
+    let post_time = getSubmissionTime(data[i].created_utc);
+    console.log(post_time + " hours ago");
+
     // Write Each Post in HTML Format as a String
     var newPost = `
     <div class="col s12 m12 l12 xl12">
@@ -76,6 +80,9 @@ function displayResult(data, product) {
                   <span class="badge">Score: ${data[i].score}</span>
                   ${badgeHotDeal(hot_deal)}
                   ${badgeExpiredDeal(expired, out_of_stock)}
+                  <span class="left badge">Submission Time: ${getSubmissionTime(
+                    data[i].created_utc
+                  )} hours ago</span>
                 </div>
             </div>
         </div>
@@ -112,4 +119,17 @@ function badgeExpiredDeal(expired, out_of_stock) {
   if (expired || out_of_stock) {
     return `<span class="new badge grey" data-badge-caption="Expired"></span>`;
   } else return "";
+}
+
+function diff_hours(dt1) {
+  var now_date = new Date(Date.now());
+  var post_date = new Date(dt1 * 1000);
+  var diff = (now_date.getTime() - post_date.getTime()) / 1000;
+  diff /= 60 * 60;
+  return Math.abs(Math.round(diff));
+}
+
+function getSubmissionTime(post_utc) {
+  // Calculate time difference in hours from the submission time to current time
+  return diff_hours(post_utc);
 }
