@@ -15,6 +15,15 @@ main {
   flex: 1 0 auto;
 }
 
+main.bg-color {
+  background-color: grey;
+}
+
+.title-color {
+  color: white;
+  font-weight: bold;
+}
+
 .thumbnail {
   height: 200px !important;
   width: 200px !important;
@@ -28,6 +37,11 @@ main {
 
 .hot-deal {
   font-style: italic;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 700;
   color: red;
+}
+
+.default-title {
+  color: black;
 }

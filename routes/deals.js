@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { search } = require("../public/js/redditapi");
 const path = require("path");
-const { spinner } = require("../helpers/spinner");
 
 // Deals Page
 router.get("/ssd", (req, res) => {

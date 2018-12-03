@@ -16,7 +16,7 @@
 
 <body>
     {{> _header}}
-    <main>
+    <main class="bg-color">
         <div class="container">
             {{{body}}}
         </div>
@@ -31,7 +31,8 @@
             $('.sidenav').sidenav();
         });
     </script>
-    <script src="/js/requestDeals.js"></script>
+    <script type="module" src="/js/parseBrandName.js"></script>
+    <script type="module" src="/js/requestDeals.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,5 @@
+import helperFn from "./parseBrandName.js";
+
 $(function() {
   // Retrieve product's name
   var product = window.location.pathname.split("/").pop();
@@ -21,7 +23,6 @@ $(function() {
 });
 
 function displayResult(data, product) {
-  var result = "";
   var resultDiv = document.getElementById(product);
 
   // Remove the Spinner
@@ -35,10 +36,11 @@ function displayResult(data, product) {
 
     // Check if there's any invalid thumbnail
     if (data[i].thumbnail === "default" || data[i].thumbnail === "self") {
-      thumbnail = `<img src="/img/deals.png" class="thumbnail">`;
+      // Parse Each Post's title to see if there's a major brand name of the product
+      thumbnail = helperFn.parseBrandName(data[i].title, false);
     } else if (data[i].thumbnail === "nsfw") {
       // Check if the product is NSFW(meaning SUPER GOOD DEAL)
-      thumbnail = `<img src="/img/hot_deal.jpg" class="thumbnail">`;
+      thumbnail = helperFn.parseBrandName(data[i].title, true);
       hot_deal = true;
     } else if (data[i].thumbnail === "spoiler") {
       // Check if the product is Expired
@@ -74,11 +76,10 @@ function displayResult(data, product) {
         </div>
     </div>
   `;
-    result += newPost;
-  }
 
-  // Append each post to the result class's div
-  resultDiv.insertAdjacentHTML("beforeend", result);
+    // Append each post to the result class's div
+    resultDiv.insertAdjacentHTML("beforeend", newPost);
+  }
 }
 
 function directToReadMore(post) {
@@ -92,6 +93,6 @@ function checkProduct(out_of_stock, expired, hot_deal) {
   } else if (hot_deal) {
     return `class="hot-deal"`;
   } else {
-    return "";
+    return `class="default-title"`;
   }
 }
