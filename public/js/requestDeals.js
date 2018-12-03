@@ -55,10 +55,6 @@ function displayResult(data, product) {
       thumbnail = `<img src="${data[i].thumbnail}" class="thumbnail">`;
     }
 
-    // Retrieve Each Post's Submission Time and Convert it to (x hours ago)
-    let post_time = getSubmissionTime(data[i].created_utc);
-    console.log(post_time + " hours ago");
-
     // Write Each Post in HTML Format as a String
     var newPost = `
     <div class="col s12 m12 l12 xl12">
@@ -129,6 +125,7 @@ function diff_hours(dt1) {
   return Math.abs(Math.round(diff));
 }
 
+// Retrieve Each Post's Submission Time and Convert it to (x hours ago)
 function getSubmissionTime(post_utc) {
   // Calculate time difference in hours from the submission time to current time
   return diff_hours(post_utc);
