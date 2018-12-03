@@ -29,7 +29,23 @@ export default {
       "Dell",
       "MSI",
       "ViewSonic",
-      "VIEWSONIC"
+      "VIEWSONIC",
+      "Logitech",
+      "LOGITECH",
+      "HyperX",
+      "HYPERX",
+      "Razer",
+      "RAZER",
+      "Corsair",
+      "CORSAIR",
+      "Steelseries",
+      "SteelSeries",
+      "STEELSERIES",
+      "CoolerMaster",
+      "COOLERMASTER",
+      "Cooler Master",
+      "Roccat",
+      "ROCCAT"
     ];
     for (let i = 0; i < listOfBrand.length; i++) {
       if (brandName.includes(listOfBrand[i])) {
@@ -98,6 +114,36 @@ export default {
       case "ViewSonic":
       case "VIEWSONIC":
         result = `<img src="/img/brand/viewsonic.jpg" class="thumbnail">`;
+        break;
+      case "Logitech":
+      case "LOGITECH":
+        result = `<img src="/img/brand/logitech.jpg" class="thumbnail">`;
+        break;
+      case "HyperX":
+      case "HYPERX":
+        result = `<img src="/img/brand/hyperx.png" class="thumbnail">`;
+        break;
+      case "Razer":
+      case "RAZER":
+        result = `<img src="/img/brand/razer.jpg" class="thumbnail">`;
+        break;
+      case "Corsair":
+      case "CORSAIR":
+        result = `<img src="/img/brand/corsair.png" class="thumbnail">`;
+        break;
+      case "Steelseries":
+      case "SteelSeries":
+      case "STEELSERIES":
+        result = `<img src="/img/brand/steelseries.png" class="thumbnail">`;
+        break;
+      case "CoolerMaster":
+      case "COOLERMASTER":
+      case "Cooler Master":
+        result = `<img src="/img/brand/coolermaster.png" class="thumbnail">`;
+        break;
+      case "Roccat":
+      case "ROCCAT":
+        result = `<img src="/img/brand/roccat.png" class="thumbnail">`;
         break;
       default:
         if (hot_deal) {
