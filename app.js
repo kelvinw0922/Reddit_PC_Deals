@@ -1,6 +1,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const path = require("path");
+const { spinner } = require("./helpers/spinner");
 
 // Initialize Express
 const app = express();
@@ -8,7 +9,15 @@ const app = express();
 // Middleware
 
 // Handlebars
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine(
+  "handlebars",
+  exphbs({
+    helpers: {
+      spinner: spinner
+    },
+    defaultLayout: "main"
+  })
+);
 app.set("view engine", "handlebars");
 
 // Load Routes

@@ -1,19 +1,10 @@
 $(function() {
+  // Retrieve product's name
   var product = window.location.pathname.split("/").pop();
+
   let deals_data;
-  let spinner = `
-    <div class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue-only">
-            <div class="circle-clipper left">
-            <div class="circle"></div>
-            </div><div class="gap-patch">
-            <div class="circle"></div>
-            </div><div class="circle-clipper right">
-            <div class="circle"></div>
-            </div>
-        </div>
-    </div>
-  `;
+
+  // Check if product is any invalid name
   if (
     product === "ssd" ||
     product === "hdd" ||
@@ -21,7 +12,6 @@ $(function() {
     product === "mouse" ||
     product === "gpu"
   ) {
-    $(".spinner").append(spinner);
     $.get(`result/${product}`, function(data) {
       console.log(data);
       deals_data = data;
@@ -36,6 +26,8 @@ function displayResult(data, product) {
 
   for (let i = 0; i < data.length; i++) {
     let thumbnail = "";
+
+    // Check if there's any invalid thumbnail
     if (
       data[i].thumbnail != "default" &&
       data[i].thumbnail != "nsfw" &&
@@ -48,6 +40,8 @@ function displayResult(data, product) {
     } else {
       thumbnail = `<img src="/img/deals.png" style="height: 200px; width: 200px; padding: 1rem; margin: auto;">`;
     }
+
+    // Write Each Post in HTML Format as a String
     var newPost = `
     <div class="col s12 m12 l12 xl12">
         <div class="card horizontal">
@@ -70,11 +64,10 @@ function displayResult(data, product) {
     result += newPost;
   }
 
-  //   data.forEach(post => {
-  //     result += post.title;
-  //     result += ", <br>";
-  //   });
+  // Remove the Spinner
   $(".spinner").remove();
+
+  // Append each post to the result class's div
   resultDiv.insertAdjacentHTML("beforeend", result);
 }
 
