@@ -2,7 +2,14 @@
     <div class="container">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">Reddit Deals</a>
-            {{> _navtab}}
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                {{> _navtab}}
+            </ul>
         </div>
     </div>
 </nav>
+
+<ul id="mobile-demo" class="sidenav">
+    {{> _navtab}}
+</ul>
