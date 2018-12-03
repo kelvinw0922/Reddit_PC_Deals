@@ -16,7 +16,7 @@ $(function() {
     product === "cpu"
   ) {
     $.get(`result/${product}`, function(data) {
-      console.log(data);
+      // console.log(data);
       deals_data = data;
       displayResult(deals_data, product);
     });
