@@ -63,14 +63,18 @@ function displayResult(data, product) {
             </div>
             <div class="card-stacked">
                 <div class="card-content">
-                <h5>${i}. <a href="${directToReadMore(
-      data[i]
-    )}" target="_blank" ${checkProduct(out_of_stock, expired, hot_deal)}>${
-      data[i].title
-    }</a></h5>
+                <h5><a href="${directToReadMore(
+                  data[i]
+                )}" target="_blank" ${checkProduct(
+      out_of_stock,
+      expired,
+      hot_deal
+    )}>${data[i].title}</a></h5>
                 </div>
                 <div class="card-action">
-                    <span class="badge">Score: ${data[i].score}</span>
+                  <span class="badge">Score: ${data[i].score}</span>
+                  ${badgeHotDeal(hot_deal)}
+                  ${badgeExpiredDeal(expired, out_of_stock)}
                 </div>
             </div>
         </div>
@@ -95,4 +99,16 @@ function checkProduct(out_of_stock, expired, hot_deal) {
   } else {
     return `class="default-title"`;
   }
+}
+
+function badgeHotDeal(hot_deal) {
+  if (hot_deal) {
+    return `<span class="new badge red" data-badge-caption="NSFW"></span>`;
+  } else return "";
+}
+
+function badgeExpiredDeal(expired, out_of_stock) {
+  if (expired || out_of_stock) {
+    return `<span class="new badge grey" data-badge-caption="Expired"></span>`;
+  } else return "";
 }

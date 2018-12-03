@@ -33,15 +33,17 @@ main.bg-color {
 
 .out-of-stock {
   color: grey !important;
+  font-style: italic;
 }
 
 .hot-deal {
   font-style: italic;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: red;
 }
 
 .default-title {
+  font-weight: 500;
   color: black;
 }
