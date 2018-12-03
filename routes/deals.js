@@ -4,78 +4,64 @@ const { search } = require("../public/js/redditapi");
 const path = require("path");
 
 // Deals Page
+
+// SSD
 router.get("/ssd", (req, res) => {
   productName = path.basename(req.route.path);
   res.render("deals/product", {
-    active: {
-      ssd: true,
-      hdd: false,
-      monitor: false,
-      mouse: false,
-      gpu: false
-    },
+    ssd: true,
     product: productName,
     title: "Solid State Drives (SSD)"
   });
 });
 
+// HDD
 router.get("/hdd", (req, res) => {
   productName = path.basename(req.route.path);
   res.render("deals/product", {
-    active: {
-      ssd: false,
-      hdd: true,
-      monitor: false,
-      mouse: false,
-      gpu: false
-    },
+    hdd: true,
     product: productName,
     title: "Hard Drives (HDD)"
   });
 });
 
+// Monitor
 router.get("/monitor", (req, res) => {
   productName = path.basename(req.route.path);
   res.render("deals/product", {
-    active: {
-      ssd: false,
-      hdd: false,
-      monitor: true,
-      mouse: false,
-      gpu: false
-    },
+    monitor: true,
     product: productName,
     title: "Monitors"
   });
 });
 
+// Mouse
 router.get("/mouse", (req, res) => {
   productName = path.basename(req.route.path);
   res.render("deals/product", {
-    active: {
-      ssd: false,
-      hdd: false,
-      monitor: false,
-      mouse: true,
-      gpu: false
-    },
+    mouse: true,
     product: productName,
     title: "Mouse"
   });
 });
 
+// GPU
 router.get("/gpu", (req, res) => {
   productName = path.basename(req.route.path);
   res.render("deals/product", {
-    active: {
-      ssd: false,
-      hdd: false,
-      monitor: false,
-      mouse: false,
-      gpu: true
-    },
+    gpu: true,
     product: productName,
     title: "Graphic Processing Unit (GPU)"
+  });
+});
+
+// CPU
+router.get("/cpu", (req, res) => {
+  productName = path.basename(req.route.path);
+  res.render("deals/product", {
+    cpu: true,
+    product: productName,
+    title: "Computer Processing Unit (CPU)"
   });
 });
 

@@ -12,7 +12,8 @@ $(function() {
     product === "hdd" ||
     product === "monitor" ||
     product === "mouse" ||
-    product === "gpu"
+    product === "gpu" ||
+    product === "cpu"
   ) {
     $.get(`result/${product}`, function(data) {
       console.log(data);
